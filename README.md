@@ -10,3 +10,9 @@
 
 <h2>LinuxGSM Vagrentfile</h2>
 A basic Vagrantfile for setting up an Ubuntu 16.04 environment to install LinuxGSM game servers. The file is designed to install required dependencies and download `linuxgsm.sh` ready for use.
+
+This is very useful for getting LinuxGSM setup on a Windows desktop. Ideal for LAN and development use on a local machine.
+
+Requires:
+Vagrant https://www.vagrantup.com/
+VirtualBox https://www.virtualbox.org/
