@@ -1,8 +1,23 @@
 #!/usr/bin/env bash
-DEBIAN_FRONTEND=noninteractive
-dpkg --add-architecture i386;
-apt-get update
-apt-get -y upgrade
-apt-get -y install curl wget file bzip2 gzip unzip bsdmainutils python util-linux ca-certificates binutils bc tmux lib32gcc1 libstdc++6 libstdc++6:i386
+
+#comment out if need be
+myextra ()
+{ 
+	yum install epel-release -y;
+	yum install htop fail2ban;
+	timedatectl set-timezone America/Chicago
+	echo "alias ll='ls -lhp --color=auto'" >> /home/vagrant/.bashrc 
+}
+
+#yum clean all
+yum update -y
+#install dep packages for 64 bit
+yum install -y mailx postfix curl wget bzip2 gzip unzip python binutils bc tmux glibc.i686 libstdc++ libstdc++.i686
+#install my extra packages 
+myextra
+#yum install mailx postfix curl wget bzip2 gzip unzip python binutils bc tmux libstdc++
 mkdir /home/vagrant/lgsm-share
+#Download linuxgsm script
 wget https://linuxgsm.com/dl/linuxgsm.sh && chmod +x linuxgsm.sh
+#Set hostname
+hostnamectl set-hostname lgsm-server
