@@ -1,19 +1,6 @@
 #!/usr/bin/env bash
 
 #comment out if need be
-myextra ()
-{
-	yum install epel-release -y;
-	yum install htop fail2ban vim nano;
-	timedatectl set-timezone America/Chicago
-	echo "alias ll='ls -lhp --color=auto'" >> /home/vagrant/.bashrc
-}
-
-killingfloor()
-{
-su vagrant - -c "bash linuxgsm.sh kf2server"
-su vagrant - -c "bash kf2server auto-install"
-}
 
 #yum clean all
 #yum update -y
@@ -25,7 +12,13 @@ myextra
 mkdir /home/vagrant/lgsm-share
 #Download linuxgsm script
 wget https://linuxgsm.com/dl/linuxgsm.sh && chmod +x linuxgsm.sh
-#Install Killing Floor 2
-#killingfloor
 #Set hostname
 hostnamectl set-hostname lgsm-server
+#extra stuff
+yum install epel-release -y;
+yum install htop fail2ban;
+timedatectl set-timezone America/Chicago
+echo "alias ll='ls -lhp --color=auto'" >> /home/vagrant/.bashrc
+#install killingfloor
+su vagrant - -c "bash linuxgsm.sh kf2server"
+su vagrant - -c "bash kf2server auto-install"
